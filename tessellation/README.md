@@ -28,7 +28,7 @@ Tools for designing and visualizing cube tessellations.
 
 Run *template.py* or any script in *configs_done* to visualize the designed tessellations. These scripts are called templates. 
 
-The first line in a template indicates the configuration of the cube, e.g.,```config_string = "101010001222220"```. It could be modified to represent any other cases. In the string, the first eight numbers indicate the signs of the eight cube vertices, then the next six numbers indicate the six face signs, and the last number is the tunnel flag.
+The first line in a template indicates the configuration of the cube, e.g.,```config_string = "101010001222220"```. It could be modified to represent any other cases. In the string, the first eight numbers indicate the signs of the eight cube vertices, then the next six numbers indicate the six face signs, and the last number is the tunnel flag. Number *2* means irrelevant (the sign does not affect the topology of the face or cube).
 
 The third line in a template indicates the designed tessellation for the cube. The tessellation design is stored as a list of edges. ```load_connections = []``` means the template is blank, which is the default setting when a template is newly generated. Afterwards, you can run that template with python and modify the design, and the terminal will print out your current design as a string. You can copy that string and paste it into the third line to save/load your current design.
 
