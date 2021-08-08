@@ -25,7 +25,7 @@ Yet, it cannot reconstruct some cube cases, and may introduce non-manifold edges
 
 
 ## Requirements
-- Python 3 with numpy, h5py, scipy, sklearn and Cython
+- Python 3 with numpy, h5py, scipy and Cython
 - [PyTorch 1.8](https://pytorch.org/get-started/locally/) (other versions may also work)
 
 Build Cython module:
