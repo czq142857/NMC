@@ -84,14 +84,14 @@ python main.py --train_float --epoch 400 --data_dir groundtruth/gt_simplified --
 python main.py --test_bool_float --data_dir groundtruth/gt_simplified --input_type sdf
 ```
 
-To train/test NMC with SDF input:
+To train/test NMC with voxel input:
 ```
 python main.py --train_bool --epoch 200 --data_dir groundtruth/gt_NMC --input_type voxel
 python main.py --train_float --epoch 100 --data_dir groundtruth/gt_NMC --input_type voxel
 python main.py --test_bool_float --data_dir groundtruth/gt_NMC --input_type voxel
 ```
 
-To train/test NMC-lite with SDF input:
+To train/test NMC-lite with voxel input:
 ```
 python main.py --train_bool --epoch 200 --data_dir groundtruth/gt_simplified --input_type voxel
 python main.py --train_float --epoch 100 --data_dir groundtruth/gt_simplified --input_type voxel
