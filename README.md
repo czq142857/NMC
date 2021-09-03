@@ -1,7 +1,7 @@
 # NMC
 PyTorch implementation for paper [Neural Marching Cubes](https://arxiv.org/abs/2106.11272), [Zhiqin Chen](https://czq142857.github.io/), [Hao Zhang](http://www.cs.sfu.ca/~haoz/).
 
-### [Paper](https://arxiv.org/abs/2106.11272)  |   [Supplementary Material (to be updated)](https://arxiv.org/abs/2106.11272)
+### [Paper](https://arxiv.org/abs/2106.11272)  |   [Supplementary Material](https://www.sfu.ca/~zhiqinc/nmc/NMC_supplementary.zip)
 
 <img src='teaser.png' />
 
