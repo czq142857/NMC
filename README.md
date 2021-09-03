@@ -21,8 +21,8 @@ If you find our work useful in your research, please consider citing:
 ## Notice
 We have implemented [Neural Dual Contouring (NDC)](https://github.com/czq142857/NDC).
 NDC is based on Dual Contouring and thus **much** easier to implement than NMC.
-It produces less triangles and vertices (1/8 of NMC, 1/4 of NMC-lite, ≈MC33), with better triangle quality.
-It runs faster than NMC because it has significantly less values to predict for each cube (1 bool 3 float for NDC, v.s. 5 bool 51 float for NMC), therefore the network size could be significantly reduced.
+It takes the same input as NMC but produces less triangles and vertices (1/8 of NMC, 1/4 of NMC-lite, ≈MC33) with better triangle quality.
+It runs faster than NMC because it has significantly less values to predict for each cube (1 bool 3 float for NDC, v.s. 5 bool 51 float for NMC), therefore the network size can be significantly reduced.
 Yet, it cannot reconstruct some cube cases, and may introduce non-manifold edges.
 
 
