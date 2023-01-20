@@ -23,15 +23,15 @@
 int main(int argc, char* argv[]) {
   
   if(argc != 4) {
-    std::cout << "SDFGen - A utility for converting closed oriented triangle meshes into grid-based signed distance fields.\n";
+    std::cout << "SDFcarve - A utility for converting triangle meshes into grid-based signed distances, using visibility in x+ x- y- z+ z- to determine the sign.\n";
     std::cout << "The output filename will match that of the input, with the OBJ suffix replaced with .sdf.\n\n";
 
-    std::cout << "Usage: SDFGen <filename> <size> <padding>\n\n";
+    std::cout << "Usage: SDFcarve <filename> <size> <center>\n\n";
     std::cout << "Where:\n";
     std::cout << "\t<filename> specifies a Wavefront OBJ (text) file representing a *triangle* mesh (no quad or poly meshes allowed). The shape is assumed to be normalized to [-0.5,0.5]. File must use the suffix \".obj\".\n";
     std::cout << "\t<size> specifies the number of grid cells in [-0.5,0.5].\n";
-    std::cout << "\t<padding> specifies the number of cells worth of padding outside the [-0.5,0.5] bound box.\n";
-    std::cout << "\tThe output size is [<size>+1+<padding>*2, <size>+1+<padding>*2, <size>+1+<padding>*2].\n\n";
+    std::cout << "\t<center> specifies whether to sample the center of each voxel [1] or the corner [0].\n";
+    std::cout << "\tThe output size is [<size>+1, <size>+1, <size>+1] if <center>==0, and [<size>, <size>, <size>] if <center>==1.\n\n";
     
     exit(-1);
   }
@@ -49,8 +49,8 @@ int main(int argc, char* argv[]) {
   dx = 1.f/dsize;
   
   std::stringstream arg3(argv[3]);
-  int padding;
-  arg3 >> padding;
+  int center;
+  arg3 >> center;
 
   //start with a massive inside out bound box.
   Vec3f min_box(0,0,0), max_box(0,0,0);
@@ -100,17 +100,24 @@ int main(int argc, char* argv[]) {
 
   //std::cout << "Read in " << vertList.size() << " vertices and " << faceList.size() << " faces." << std::endl;
 
-  //Add padding around the box.
+  //box size
   Vec3f unit(1,1,1);
-  min_box -= (0.5f+padding*dx)*unit;
-  max_box += (0.5f+dx+padding*dx)*unit;
+  if (center>0) {
+    min_box -= (0.5f-dx/2)*unit;
+    max_box += (0.5f+dx/2)*unit;
+  }
+  else {
+    min_box -= 0.5f*unit;
+    max_box += (0.5f+dx)*unit;
+  }
   Vec3ui sizes = Vec3ui((max_box - min_box)/dx);
   
   //std::cout << "Bound box size: (" << min_box << ") to (" << max_box << ") with dimensions " << sizes << "." << std::endl;
 
   //std::cout << "Computing signed distance field.\n";
   Array3f phi_grid;
-  make_level_set3(faceList, vertList, min_box, dx, sizes[0], sizes[1], sizes[2], phi_grid);
+  Array3c phi_sign;
+  make_level_set3(faceList, vertList, min_box, dx, sizes[0], sizes[1], sizes[2], phi_grid, phi_sign);
 
   std::string outname;
 

@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
     std::cout << "\t<filename> specifies a Wavefront OBJ (text) file representing a *triangle* mesh (no quad or poly meshes allowed). The shape is assumed to be normalized to [-0.5,0.5]. File must use the suffix \".obj\".\n";
     std::cout << "\t<size> specifies the number of grid cells in [-0.5,0.5].\n";
     std::cout << "\t<padding> specifies the number of cells worth of padding outside the [-0.5,0.5] bound box.\n";
-    std::cout << "\tThe output size is [<dx>+1+padding*2, <dx>+1+padding*2, <dx>+1+padding*2].\n\n";
+    std::cout << "\tThe output size is [<size>+1+<padding>*2, <size>+1+<padding>*2, <size>+1+<padding>*2].\n\n";
     
     exit(-1);
   }
