@@ -71,23 +71,23 @@ int main(int argc, char* argv[]) {
     std::getline(infile, line);
 
     //.obj files sometimes contain vertex normals indicated by "vn"
-    if(line.substr(0,1) == std::string("v") && line.substr(0,2) != std::string("vn")){
+    if(line.substr(0,2) == std::string("v ")){
       std::stringstream data(line);
       char c;
       Vec3f point;
       data >> c >> point[0] >> point[1] >> point[2];
       vertList.push_back(point);
     }
-    else if(line.substr(0,1) == std::string("f")) {
+    else if(line.substr(0,2) == std::string("f ")) {
       std::stringstream data(line);
+      std::string v0s,v1s,v2s;
       char c;
       int v0,v1,v2;
-      data >> c >> v0 >> v1 >> v2;
+      data >> c >> v0s >> v1s >> v2s;
+      v0 = stoi(v0s);
+      v1 = stoi(v1s);
+      v2 = stoi(v2s);
       faceList.push_back(Vec3ui(v0-1,v1-1,v2-1));
-    }
-    else if( line.substr(0,2) == std::string("vn") ){
-      std::cerr << "Obj-loader is not able to parse vertex normals, please strip them from the input file. \n";
-      exit(-2); 
     }
     else {
       ++ignored_lines; 
